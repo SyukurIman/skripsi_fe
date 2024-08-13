@@ -1,0 +1,60 @@
+paths:
+  /api/v1/room/validasi:
+    post:
+      tags:
+        - Room
+      summary: Validasi room pada sesi
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                number_key:
+                  type: string
+                  description: required
+                  example: string
+      responses:
+        '200':
+          description: Ok.
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Pelanggan
+                username: string-Pelanggan
+                jenis_fitur: Call
+                kunci_room: nqijasfhpn
+                domain: pertemanansejiwa.metered.live
+  /api/v1/room/image:
+    post:
+      tags:
+        - Room
+      summary: Image room pada sesi
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                number_key:
+                  type: string
+                  description: required
+                  example: string
+      responses:
+        '200':
+          description: Ok.
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                image_user: image user
+                image_dokter: image dokter
+  

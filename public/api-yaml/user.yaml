@@ -1,0 +1,212 @@
+paths:
+  /api/v1/user/profile:
+    get:
+      tags:
+        - User
+      summary: Data Profile User
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                user: {
+                  name: "user1",
+                  no_telpon: "0881193032",
+                  image_profile: "img/default.jpg",
+                  email: "user1@mail.com"
+                }
+    post:
+      post:
+      tags:
+        - User
+      summary: Update Profile User
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: required
+                  example: string
+                no_telpon:
+                  type: string
+                  description: required
+                  example: 082121211212
+                email:
+                  type: string
+                  description: required
+                  example: string@string.com
+                password:
+                  type: string
+                image_profile:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                user: {
+                  name: "user1",
+                  no_telpon: "0881193032",
+                  image_profile: "img/default.jpg",
+                  email: "user1@mail.com"
+                }
+  /api/v1/user/sesi/layanan:
+    get:
+      tags:
+        - User
+      summary: Mendapatkan data sesi layanan yang pernah di order
+      responses:
+        '200':
+          description: Ok.
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                data_layanan: [
+                  {
+                    "id_layanan": "df264bab-14c2-4c6d-b9dc-b61560683313",
+                    "nama_layanan": "Layanan Konseling",
+                    "jenis_fitur": "Video Call",
+                    "nama_paket": "Paket Care",
+                    "sesi_tersedia": 3
+                  },
+                  {
+                    "id_layanan": "df264bab-14c2-4c6d-b9dc-b61560683313",
+                    "nama_layanan": "Layanan Konseling",
+                    "jenis_fitur": "Call",
+                    "nama_paket": "Paket Care",
+                    "sesi_tersedia": 4
+                  }
+                ]
+    post:
+      tags:
+        - User
+      summary: Mendapatkan data sesi berdasrkan layanan
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id_layanan:
+                  type: string
+                  description: required
+                  example: string
+                tanggal:
+                  type: string
+                  description: required
+                  example: "2024-07-26"
+      responses:
+        '200':
+          description: Ok.
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                data_sesi: [
+                  {
+                    "id": "2a53304b-7734-4422-95a8-5718074ab16f",
+                    "jenis_pelayanan": "Video Call",
+                    "tanggal": "2024-08-15",
+                    "waktu_mulai": "10:00:00",
+                    "waktu_selesai": "10:30:00",
+                    "durasi": "30 Menit",
+                    "nama_dokter": "Syukur Iman Attaqwa",
+                    "pengalaman_dokter": "2 tahun",
+                    "jenis_dokter": "Psikolog"
+                  }
+                ]
+  /api/v1/user/sesi:
+    get:
+      tags:
+        - User
+      summary: Mendapatkan data sesi yang dipakai
+      responses:
+        '200':
+          description: Ok.
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                data_sesi: [
+                  {
+                    "status_sesi": "Sesi Telah Selesai",
+                    "link_sesi": "https://sejiwa.cakuide.com/meeting/nqijasfhpn",
+                    "jenis_pelayanan": "Call",
+                    "tanggal": "2024-07-27",
+                    "waktu_mulai": "09:30:00",
+                    "waktu_selesai": "15:20:00",
+                    "durasi": "350 Menit",
+                    "nama_dokter": "Syukur Iman Attaqwa",
+                    "pengalaman_dokter": "2 tahun",
+                    "jenis_dokter": "Psikolog"
+                  }
+                ]
+    post:
+      tags:
+        - User
+      summary: Menggunakan sesi
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id_sesi:
+                  type: string
+                  description: required
+                  example: string
+      responses:
+        '200':
+          description: Ok.
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                key_link:
+                  id_dokter: 1a953320-f20a-4b3d-b6cc-b00e1ef35c17
+                  number_key: -mp9ujem5b
+                data_sesi:
+                  id: 8e6fb009-f58c-4a24-8809-d50eb69f9fa3
+                  jenis_pelayanan: Video Call
+                  tanggal: 2024-07-27
+                  waktu_mulai: 19:30:00
+                  waktu_selesai: 20:30:00
+                  dokter:
+                    id: 1a953320-f20a-4b3d-b6cc-b00e1ef35c17
+                    spesalis: Pemmeliharaan komputer
+                    pengalaman: 2 tahun
+                    jenis_dokter: Psikolog
+

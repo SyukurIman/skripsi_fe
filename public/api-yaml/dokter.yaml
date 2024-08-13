@@ -1,0 +1,238 @@
+paths:
+  /api/v1/dokter/profile:
+    get:
+      tags:
+        - Dokter
+      summary: Get Data Profile User Dokter
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                user: {
+                  name: "user1",
+                  no_telpon: "0881193032",
+                  image_profile: "img/default.jpg",
+                  email: "user1@mail.com"
+                }
+    post:
+      tags:
+        - Dokter
+      summary: Update Profile User Dokter
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: required
+                  example: string
+                no_telpon:
+                  type: string
+                  description: required
+                  example: 082121211212
+                email:
+                  type: string
+                  description: required
+                  example: string@string.com
+                password:
+                  type: string
+                image_profile:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                user: {
+                  name: "user1",
+                  no_telpon: "0881193032",
+                  image_profile: "img/default.jpg",
+                  email: "user1@mail.com"
+                }
+  /api/v1/dokter/layanan:
+    get:
+      tags:
+        - Dokter
+      summary: Info Layanan Tersedia di Dokter
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                data_layanan: [
+                  {
+                    id: random_id,
+                    nama: nama_layanan
+                  }
+                ]
+
+  /api/v1/dokter/sesi:
+    get:
+      tags:
+        - Dokter
+      summary: Get Sesi Dokter
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                data_sesi: [
+                  {
+                    jenis_pelayanan: "videocall",
+                    tanggal: "2024-06-25",
+                    waktu_mulai: "2024-06-25 09:27:00",
+                    waktu_selesai: "2024-06-25 10:20:00",
+                    id: "bcf717e1-9925-4d52-8298-a5ad724e7ccc",
+                    updated_at: "2024-06-25T02:39:51.000000Z",
+                    created_at: "2024-06-25T02:39:51.000000Z"
+                  }, {}
+                ]
+    post:
+      tags:
+        - Dokter
+      summary: Create Sesi Dokter
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id_kategori_layanan:
+                  type: string
+                  description: required
+                  example: random_uuid_kategori_layanan
+                jenis_pelayanan:
+                  type: string
+                  description: required
+                  example: videocall
+                tanggal:
+                  type: string
+                  format: date
+                  description: required
+                  pattern: /([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/
+                  example: "2024-06-25"
+                waktu_mulai:
+                  type: string
+                  format: date-time
+                  description: required
+                  pattern: /([0-9]{4})-(?:[0-9]{2})-([0-9]{2}) ([0-24]{2}:([0-60]{2}):([0-60]{2}))/
+                  example: "2024-06-25 09:27:00"
+                waktu_selesai:
+                  type: string
+                  format: date-time
+                  description: required
+                  pattern: /([0-9]{4})-(?:[0-9]{2})-([0-9]{2}) ([0-24]{2}:([0-60]{2}):([0-60]{2}))/
+                  example: "2024-06-25 10:20:00"
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                data_sesi: {
+                  jenis_pelayanan: "videocall",
+                  tanggal: "2024-06-25",
+                  waktu_mulai: "2024-06-25 09:27:00",
+                  waktu_selesai: "2024-06-25 10:20:00",
+                  id: "bcf717e1-9925-4d52-8298-a5ad724e7ccc",
+                  updated_at: "2024-06-25T02:39:51.000000Z",
+                  created_at: "2024-06-25T02:39:51.000000Z"
+                }
+  /api/v1/dokter/sesi/{id}:
+    post:
+      tags:
+        - Dokter
+      parameters:
+        - name: id
+          in: path
+          description: required
+          required: true
+          schema:
+            type: string
+      summary: Update Sesi Dokter
+      
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id_kategori_layanan:
+                  type: string
+                  description: required
+                  example: random_uuid_kategori_layanan
+                jenis_pelayanan:
+                  type: string
+                  description: required
+                  example: videocall
+                tanggal:
+                  type: string
+                  format: date
+                  description: required
+                  pattern: /([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/
+                  example: "2024-06-25"
+                waktu_mulai:
+                  type: string
+                  format: date-time
+                  description: required
+                  pattern: /([0-9]{4})-(?:[0-9]{2})-([0-9]{2}) ([0-24]{2}:([0-60]{2}):([0-60]{2}))/
+                  example: "2024-06-25 09:27:00"
+                waktu_selesai:
+                  type: string
+                  format: date-time
+                  description: required
+                  pattern: /([0-9]{4})-(?:[0-9]{2})-([0-9]{2}) ([0-24]{2}:([0-60]{2}):([0-60]{2}))/
+                  example: "2024-06-25 10:20:00"
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                data_sesi: {
+                  jenis_pelayanan: "videocall",
+                  tanggal: "2024-06-25",
+                  waktu_mulai: "2024-06-25 09:27:00",
+                  waktu_selesai: "2024-06-25 10:20:00",
+                  id: "bcf717e1-9925-4d52-8298-a5ad724e7ccc",
+                  updated_at: "2024-06-25T02:39:51.000000Z",
+                  created_at: "2024-06-25T02:39:51.000000Z"
+                }

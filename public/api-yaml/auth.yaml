@@ -1,0 +1,110 @@
+paths:
+  /api/v1/auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Login User
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: required
+                  example: string@string.com
+                password:
+                  type: string
+                  description: required
+                  example: string12345
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                role: "UserBiasa"
+                token: "random_token_jwt"
+  /api/v1/auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: Register User
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: required
+                  example: string
+                email:
+                  type: string
+                  description: required
+                  example: string@string.com
+                password:
+                  type: string
+                  description: required
+                  example: string12345
+                password_confirmation:
+                  type: string
+                  description: required
+                  example: string12345
+                no_telpon:
+                  type: string
+                  description: required
+                  example: 0081112203
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                user:
+                  id: 1
+                  name: user1
+                  phone_number: 00081018201
+                  school_name: Univ 1
+                  photo_profile: img/default_photo.jpg
+                  email: "email_user1"
+                token: random_token_jwt
+  /api/v1/auth/logout:
+    post:
+      tags:
+        - Authentication
+      summary: Logout
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                pesan: Logout Berhasil!
+
+  /api/v1/image_profile:
+    get:
+      tags:
+        - Authentication
+      summary: Mendapatkan Foto Profile User
+      responses:
+        '200':
+          description: A webp image.
+          headers:
+            $ref: './headers.yaml#/components/headers/ImageHeaders'

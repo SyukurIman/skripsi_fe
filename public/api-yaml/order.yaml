@@ -1,0 +1,167 @@
+paths:
+  /api/v1/user/order:
+      post:
+        tags:
+          - Order
+        summary: Create order
+        requestBody:
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  id_paket:
+                    type: string
+                    description: required
+                    example: "99usaduuadaa-dawdjawjd-adwn"
+        responses:
+          '200':
+            description: OK
+            headers:
+              $ref: './headers.yaml#/components/headers/DefaultHeaders'
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  status: Berhasil
+                  data_order: {
+                    id_paket: "839fc8e8-decf-4d1c-b343-e0fcb9353036",
+                    id_user: "77d3b11e-d73c-4573-b309-c7f3c244f7e9",
+                    invoice: "K-2072024",
+                    harga: "600000",
+                    status_pembayaran: "0",
+                    tanggal_kadaluarsa: "2025-07-17 16:25:22",
+                    id: "b152de90-7f4a-4a51-a926-fb8eef485bd9",
+                    updated_at: "2024-07-17T09:25:22.000000Z",
+                    created_at: "2024-07-17T09:25:22.000000Z",
+                    snap: "4d8d6449-ba65-43ce-a590-4607b0d12ead",
+                    kadaluarsa_formatted: "17 Juli 2025",
+                    harga_formatted: "Rp600.000",
+                    status_formatted: "belum bayar",
+                    is_kadaluarsa: false
+                  }
+  /api/v1/user/order_user:
+      get:
+        tags:
+          - Order
+        summary: Data order user
+        responses:
+          '200':
+            description: OK
+            headers:
+              $ref: './headers.yaml#/components/headers/DefaultHeaders'
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  status: Berhasil
+                  order: [
+                      {
+                        id: "ce932a08-aaf1-469d-b17e-3f6f32b5cd21",
+                        id_paket: "839fc8e8-decf-4d1c-b343-e0fcb9353036",
+                        id_user: "77d3b11e-d73c-4573-b309-c7f3c244f7e9",
+                        harga: "600000",
+                        status_pembayaran: 1,
+                        invoice: "K-1072024",
+                        tanggal_kadaluarsa: "2025-07-17 14:53:50",
+                        kadaluarsa_formatted: "17 Juli 2025",
+                        harga_formatted: "Rp600.000",
+                        status_formatted: "sudah bayar",
+                        is_kadaluarsa: false,
+                        paket: {
+                          id: "839fc8e8-decf-4d1c-b343-e0fcb9353036",
+                          id_kategori_layanan: "bbed5940-756e-41ef-a472-efff2f78a1bf",
+                          nama_paket: "take care",
+                          harga: "600000",
+                          max_sesi: 1,
+                          kadaluarsa: 12,
+                          created_at: "2024-07-17T06:38:24.000000Z",
+                          updated_at: "2024-07-17T06:41:53.000000Z",
+                          harga_persesi: "128900",
+                          rentang_pengalaman_min: 1,
+                          rentang_pengalaman_max: 5,
+                          kadaluarsa_formatted: "12 bulan",
+                          harga_formatted: "Rp600.000",
+                          detail_paket_count: 4,
+                          kategori_layanan: {
+                            id: "bbed5940-756e-41ef-a472-efff2f78a1bf",
+                            nama: "konseling"
+                            }
+                          },
+                          user: {
+                            name: "tes1",
+                            email: "candra@gmail.com",
+                            email_verified_at: null,
+                            no_telpon: "08129282382",
+                            image_profile: "storage/default.jpg"
+                          }
+                    },{}
+                  ]
+  /api/v1/user/order_data/{id}:
+      get:
+        tags:
+          - Order
+        parameters:
+          - name: id
+            in: path
+            description: required
+            required: true
+            schema:
+              type: string
+        summary: Data detail order
+        responses:
+          '200':
+            description: OK
+            headers:
+              $ref: './headers.yaml#/components/headers/DefaultHeaders'
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  status: Berhasil
+                  order: [
+                      {
+                        id: "ce932a08-aaf1-469d-b17e-3f6f32b5cd21",
+                        id_paket: "839fc8e8-decf-4d1c-b343-e0fcb9353036",
+                        id_user: "77d3b11e-d73c-4573-b309-c7f3c244f7e9",
+                        harga: "600000",
+                        status_pembayaran: 1,
+                        invoice: "K-1072024",
+                        tanggal_kadaluarsa: "2025-07-17 14:53:50",
+                        kadaluarsa_formatted: "17 Juli 2025",
+                        harga_formatted: "Rp600.000",
+                        status_formatted: "sudah bayar",
+                        is_kadaluarsa: false,
+                        paket: {
+                          id: "839fc8e8-decf-4d1c-b343-e0fcb9353036",
+                          id_kategori_layanan: "bbed5940-756e-41ef-a472-efff2f78a1bf",
+                          nama_paket: "take care",
+                          harga: "600000",
+                          max_sesi: 1,
+                          kadaluarsa: 12,
+                          created_at: "2024-07-17T06:38:24.000000Z",
+                          updated_at: "2024-07-17T06:41:53.000000Z",
+                          harga_persesi: "128900",
+                          rentang_pengalaman_min: 1,
+                          rentang_pengalaman_max: 5,
+                          kadaluarsa_formatted: "12 bulan",
+                          harga_formatted: "Rp600.000",
+                          detail_paket_count: 4,
+                          kategori_layanan: {
+                            id: "bbed5940-756e-41ef-a472-efff2f78a1bf",
+                            nama: "konseling"
+                            }
+                          },
+                          user: {
+                            name: "tes1",
+                            email: "candra@gmail.com",
+                            email_verified_at: null,
+                            no_telpon: "08129282382",
+                            image_profile: "storage/default.jpg"
+                          }
+                    },
+                  ]
+

@@ -1,0 +1,80 @@
+openapi: 3.0.0
+info:
+  title: BankendSejiwa
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:8000/
+  - url: https://sejiwa.cakuide.com/
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    noauthAuth:
+      type: http
+      scheme: noauth
+security:
+  - bearerAuth: []
+tags:
+  - name: Authentication
+  - name: User
+  - name: Dokter
+  - name: Data Umum
+  - name: Order
+  - name: Room
+  - name: Chat
+
+paths:
+  /api/v1/auth/login:
+    $ref: './api-yaml/auth.yaml#/paths/~1api~1v1~1auth~1login'
+  /api/v1/auth/register:
+    $ref: './api-yaml/auth.yaml#/paths/~1api~1v1~1auth~1register'
+  /api/v1/auth/logout:
+    $ref: './api-yaml/auth.yaml#/paths/~1api~1v1~1auth~1logout'
+
+  /api/v1/image_profile:
+    $ref: './api-yaml/auth.yaml#/paths/~1api~1v1~1image_profile'
+
+  /api/v1/user/profile:
+    $ref: './api-yaml/user.yaml#/paths/~1api~1v1~1user~1profile'
+
+  /api/v1/user/sesi/layanan:
+    $ref: './api-yaml/user.yaml#/paths/~1api~1v1~1user~1sesi~1layanan'
+  /api/v1/user/sesi:
+    $ref: './api-yaml/user.yaml#/paths/~1api~1v1~1user~1sesi'
+
+
+  /api/v1/dokter/profile:
+    $ref: './api-yaml/dokter.yaml#/paths/~1api~1v1~1dokter~1profile'
+  /api/v1/dokter/layanan:
+    $ref: './api-yaml/dokter.yaml#/paths/~1api~1v1~1dokter~1layanan'
+  /api/v1/dokter/sesi:
+    $ref: './api-yaml/dokter.yaml#/paths/~1api~1v1~1dokter~1sesi'
+  /api/v1/dokter/sesi/{id}:
+    $ref: './api-yaml/dokter.yaml#/paths/~1api~1v1~1dokter~1sesi~1{id}'
+
+  /api/v1/dokter/:
+    $ref: './api-yaml/data_umum.yaml#/paths/~1api~1v1~1dokter~1'
+  /api/v1/artikel:
+    $ref: './api-yaml/data_umum.yaml#/paths/~1api~1v1~1artikel'
+  /api/v1/artikel/{id}:
+    $ref: './api-yaml/data_umum.yaml#/paths/~1api~1v1~1artikel~1{id}'
+  /api/v1/paket/:
+    $ref: './api-yaml/data_umum.yaml#/paths/~1api~1v1~1paket~1'
+
+  /api/v1/user/order:
+    $ref: './api-yaml/order.yaml#/paths/~1api~1v1~1user~1order'
+  /api/v1/user/order_user:
+    $ref: './api-yaml/order.yaml#/paths/~1api~1v1~1user~1order_user'
+  /api/v1/user/order_data/{id}:
+    $ref: './api-yaml/order.yaml#/paths/~1api~1v1~1user~1order_data~1{id}'
+
+  /api/v1/room/validasi:
+    $ref: './api-yaml/room.yaml#/paths/~1api~1v1~1room~1validasi'
+  /api/v1/room/image:
+    $ref: './api-yaml/room.yaml#/paths/~1api~1v1~1room~1image'
+
+  /api/v1/chat/send:
+    $ref: './api-yaml/chat.yaml#/paths/~1api~1v1~1chat~1send'
+  /api/v1/chat/{id}:
+    $ref: './api-yaml/chat.yaml#/paths/~1api~1v1~1chat~1{id}'

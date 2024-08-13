@@ -1,0 +1,73 @@
+paths:
+  /api/v1/chat/send:
+      post:
+        tags:
+          - Chat
+        summary: Create Chat
+        requestBody:
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  reciver_id:
+                    type: string
+                    description: required
+                    example: "99usaduuadaa-dawdjawjd-adwn"
+                  id_sesi:
+                    type: string
+                    description: required
+                    example: "99usaduuadaa-dawdjawjd-adwn"
+                  message:
+                    type: string
+                    description: required
+                    example: "halo"
+        responses:
+          '200':
+            description: OK
+            headers:
+              $ref: './headers.yaml#/components/headers/DefaultHeaders'
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  status: Berhasil
+                  data: {
+                      id: "b152de90-7f4a-4a51-a926-fb8eef485bd9",
+                      sender_id: "77d3b11e-d73c-4573-b309-c7f3c244f7e9",
+                      reciver_id: "99usaduuadaa-dawdjawjd-adwn",
+                      message: "halo",
+                  }
+  /api/v1/chat/{id}:
+      get:
+        tags:
+          - Chat
+        summary: Data chat
+        responses:
+          '200':
+            description: OK
+            headers:
+              $ref: './headers.yaml#/components/headers/DefaultHeaders'
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  status: Berhasil
+                  order: [
+                      {
+                        id: "ce932a08-aaf1-469d-b17e-3f6f32b5cd21",
+                        sender_id: "ce932a08-aaf1-469d-b17e-3f6f32b5cd21",
+                        reciver_id: "99usaduuadaa-dawdjawjd-adwn",
+                        message: "halo",
+                        reciver: {
+                          id: "839fc8e8-decf-4d1c-b343-e0fcb9353036",
+                          name: "candra",
+                          },
+                        sender: {
+                          id: "839fc8e8-decf-4d1c-b343-e0fcb9353036",
+                          name: "candra",
+                          }
+                    },{}
+                  ]

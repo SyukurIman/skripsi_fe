@@ -1,0 +1,126 @@
+paths:
+  /api/v1/dokter/:
+    get:
+      tags:
+        - Data Umum
+      summary: Data Dokter
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                data_mentor: [
+                  {
+                    pengalaman: pengalaman_dokter,
+                    spesialis: spesialis_dokter,
+                    user: {
+                      name: nama_dokter,
+                      img_profile: image_user
+                    }
+                  }
+                ]
+                data_psikolog: [
+                  {
+                    pengalaman: pengalaman_dokter,
+                    spesialis: spesialis_dokter,
+                    user: {
+                      name: nama_dokter,
+                      img_profile: image_user
+                    }
+                  }
+                ]
+
+  /api/v1/artikel:
+    get:
+      tags:
+        - Data Umum
+      summary: Data artikel
+      responses:
+        '200':
+          description: OK
+          headers:
+            $ref: './headers.yaml#/components/headers/DefaultHeaders'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: Berhasil
+                artikel: {
+                  id: "90jlkojdfopof-a0fklefoi",
+                  judul: "kesahatan mental",
+                  nama_penulis: "admin",
+                  deskripsi: "mental mental apaan tuh",
+                  tanggal_artikel: "25 juni 2024",
+                  gambar: "url/storage/image/artikel/1219183.jpg"
+                }
+  /api/v1/artikel/{id}:
+      get:
+        tags:
+          - Data Umum
+        parameters:
+          - name: id
+            in: path
+            description: required
+            required: true
+            schema:
+              type: string
+        summary: Data artikel detail
+        responses:
+          '200':
+            description: OK
+            headers:
+              $ref: './headers.yaml#/components/headers/DefaultHeaders'
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  status: Berhasil
+                  artikel: {
+                    id: "90jlkojdfopof-a0fklefoi",
+                    judul: "kesahatan mental",
+                    nama_penulis: "admin",
+                    deskripsi: "mental mental apaan tuh",
+                    tanggal_artikel: "25 juni 2024",
+                    gambar: "url/storage/image/artikel/1219183.jpg"
+                  }
+
+  /api/v1/paket/:
+      get:
+        tags:
+          - Data Umum
+        summary: Data paket
+        responses:
+          '200':
+            description: OK
+            headers:
+              $ref: './headers.yaml#/components/headers/DefaultHeaders'
+            content:
+              application/json:
+                schema:
+                  type: object
+                example:
+                  status: Berhasil
+                  paket: {
+                    id_kategori_layanan: "90jlkojdfopof-a0fklefoi",
+                    nama_paket: "lengkap",
+                    max_sesi: "2",
+                    kadaluarsa_formatted: "6 bulan",
+                    harga_formatted: "Rp 34.000",
+                    rentang_pengalaman_min: "1",
+                    rentang_pengalaman_max: "5",
+                    detail_paket: {
+                      deskripsi_paket: "semua bisa di paket ini"
+                    },
+                    kategori_layanan: {
+                      nama: "mentoring",
+                    }
+                  }
+

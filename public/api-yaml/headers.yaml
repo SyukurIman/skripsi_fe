@@ -1,0 +1,57 @@
+components:
+  headers:
+    DefaultHeaders:
+      Host:
+        schema:
+          type: number
+          example: 127.0.0.1:8000
+      Date:
+        schema:
+          type: string
+          example: Wed, 01 Feb 2023 02:21:21 GMT
+      Connection:
+        schema:
+          type: string
+          example: close
+      X-Powered-By:
+        schema:
+          type: number
+          example: PHP/8.1.0
+      Cache-Control:
+        schema:
+          type: string
+          example: no-cache, private
+      Content-Type:
+        schema:
+          type: string
+          example: application/json
+      X-RateLimit-Limit:
+        schema:
+          type: integer
+          example: 100
+      X-RateLimit-Remaining:
+        schema:
+          type: integer
+          example: 97
+      Access-Control-Allow-Origin:
+        schema:
+          type: string
+          example: '*'
+    ImageHeaders:
+      Accept-Ranges:
+        description: Specifies the accept ranges.
+        schema:
+          type: string
+          example: bytes
+      Access-Control-Allow-Origin:
+        schema:
+          type: string
+          example: '*'
+      Content-Length:
+        schema:
+          type: number
+          example: 12345
+      Content-Type:
+        schema:
+          type: string
+          example: image/webp
