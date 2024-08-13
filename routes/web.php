@@ -32,9 +32,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-// Route::post('/broadcasting/auth', function () {
-//     return auth()->user();
-// });
 
 Route::get('/tes_midtrans/{id}', [OrderApiController::class, 'tes_midtrans']);
 
